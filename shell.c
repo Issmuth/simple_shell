@@ -7,24 +7,21 @@
  * Return: exit stat
  */
 
-int main(void)
+int main(int __attribute__((unused)) argc, char **argv)
 {
-	shell_info *shellf;
-	int stat;
+	shell_info shellf;
 
 	signal(SIGINT, sig_handle);
 
-	shellf = malloc(sizeof(shell_info));
 
-	shellf->command = NULL;
-	shellf->args = NULL;
-	shellf->loop_count = 1;
-	shellf->stat = 0;
+	shellf.name = argv[0];
+	shellf.command = NULL;
+	shellf.args = NULL;
+	shellf.loop_count = 1;
+	shellf.stat = 0;
+	shellf.mode = isatty(STDIN_FILENO);
 	looper(shellf);
 
-	stat = shellf->stat;
-
-	free(shellf);
-	return (stat);
+	return (0);
 }
 

@@ -18,13 +18,13 @@ char **tokenize(char *command)
 	if (command == NULL)
 		return (NULL);
 
-	if (strcmp(command, "\n") == 0)
+	if (_strcmp(command, "\n") == 0)
 	{
 		free(command);
 		return (NULL);
 	}
 
-	temp = strdup(command);
+	temp = _strdup(command);
 	token = strtok(command, delim);
 	while (token)
 	{
@@ -39,8 +39,8 @@ char **tokenize(char *command)
 	token = strtok(temp, delim);
 	while (token)
 	{
-		args[i] = malloc(sizeof(char) * (strlen(token) + 1));
-		strcpy(args[i], token);
+		args[i] = malloc(sizeof(char) * (_strlen(token) + 1));
+		_strcpy(args[i], token);
 		token = strtok(NULL, delim);
 		i++;
 	}
