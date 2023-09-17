@@ -17,3 +17,28 @@ void freedom(shell_info shellf)
 	free((shellf.args)[i]);
 	free(shellf.args);
 }
+
+/**
+ * free_env - frees environment variable
+ * list
+ * @shellf: shellf info
+ */
+
+void free_env(shell_info shellf)
+{
+	int i = 0;
+
+	while ((shellf.env)[i])
+		i++;
+
+	if (environ[i] == NULL)
+		return;
+
+	i--;
+	while (environ[i])
+	{
+		free(environ[i]);
+		i++;
+	}
+	free(environ[i]);
+}

@@ -20,14 +20,19 @@ void looper(shell_info shellf)
 		if (sig_eof == -1)
 		{
 			free(shellf.command);
+			free_env(shellf);
 			if (shellf.mode == 1)
 				write(STDOUT_FILENO, "\n", 1);
 			exit(shellf.stat);
 		} else
 		{
 			shellf.args = tokenize(shellf.command);
-			if (check_builtins(shellf) == 1)
+			variable(shellf);
+			if ((shellf.stat = check_builtins(shellf)) != 0)
 			{
+				if (shellf.stat == -1 || shellf.stat == 1)
+					shellf.stat = 0;
+
 				freedom(shellf);
 				shellf.loop_count += 1;
 				continue;

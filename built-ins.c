@@ -5,7 +5,7 @@
  * if it exists
  * @shellf: shell info
  *
- * Return: 1 if executed 0 if not
+ * Return: 1 if executed successfully 0 if not
  */
 
 int check_builtins(shell_info shellf)
@@ -13,6 +13,8 @@ int check_builtins(shell_info shellf)
 	int i;
 	builtin built_ins[] = {
 		{"exit", exit_func},
+		{"env", executeEnvCommand},
+		{"setenv", _setenv},
 		{NULL, NULL}
 	};
 
@@ -22,10 +24,7 @@ int check_builtins(shell_info shellf)
 	for (i = 0; built_ins[i].command != NULL; i++)
 	{
 		if (!(strcmp(built_ins[i].command, shellf.args[0])))
-		{
-			shellf.stat = built_ins[i].func(shellf);
-			return (1);
-		}
+			return (built_ins[i].func(shellf));
 	}
 	return (0);
 }

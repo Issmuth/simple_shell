@@ -14,7 +14,7 @@ int exit_func(shell_info __attribute__((unused)) shellf)
 	if (shellf.args[1] != NULL)
 	{
 		stat = _atoi(shellf.args[1]);
-		if (stat < 0)
+		if (stat < 0 || _strlen(shellf.args[1]) > 10)
 		{
 			write(STDERR_FILENO, shellf.name, _strlen(shellf.name));
 			write(STDERR_FILENO, ": ", 2);
@@ -24,11 +24,17 @@ int exit_func(shell_info __attribute__((unused)) shellf)
 			write(STDERR_FILENO, ": Illegal number: ", 18);
 			write(STDERR_FILENO, shellf.args[1], _strlen(shellf.args[1]));
 			write(STDERR_FILENO, "\n", 1);
+			free(loop);
 			return (2);
 		} else
-			shellf.stat = stat;
+			if (stat >= 256)
+				shellf.stat = (stat % 256);
+			else
+				shellf.stat = stat;
 	}
+	free(loop);
 	freedom(shellf);
+	free_env(shellf);
 	exit(shellf.stat);
 }
 			

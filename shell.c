@@ -20,8 +20,9 @@ int main(int __attribute__((unused)) argc, char **argv)
 	shellf.loop_count = 1;
 	shellf.stat = 0;
 	shellf.mode = isatty(STDIN_FILENO);
+	shellf.env = environ;
 	looper(shellf);
-
+	
 	return (0);
 }
 

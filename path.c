@@ -32,6 +32,9 @@ char **getpath(char *path)
 	int i = 0, j = 0;
 	char *token, **pathlist, *delim = ":"; 
 
+	if (path == NULL)
+		return (NULL);
+
 	while (path[i])
 	{
 		if (path[i] == ':')
@@ -82,6 +85,8 @@ int check_path(shell_info shellf)
 		return (1);
 
 	path = _getenv("PATH");
+	if (path == NULL)
+		return (0);
 	
 	pathlist = getpath(path);
 	if (pathlist == NULL)

@@ -1,6 +1,21 @@
 #include "shell.h"
 
 /**
+ * _isalpha - check if the character is
+ * an alphabet
+ * @c: character to be checked
+ *
+ * Return: 1 if it is 0 if not
+ */
+
+int _isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+
+	return (0);
+}
+/**
  * reverse - reverses string
  * @str: string
  * @len: string length
@@ -87,6 +102,9 @@ int _atoi(char *str)
 
 	for (i = 0; str[i] != '\0' && flag != 2; i++)
 	{
+		if (_isalpha(str[i]))
+			return (-1);
+
 		if (str[i] == '-')
 			is_negative *= -1;
 

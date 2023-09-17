@@ -22,6 +22,7 @@ extern char **environ;
  * the loops has iterated
  * @stat: shell status
  * @mode: interactive vs non-interactive
+ * @env: environmenr variables list
  */
 typedef struct info
 {
@@ -31,6 +32,7 @@ typedef struct info
 	int loop_count;
 	int stat;
 	int mode;
+	char **env;
 } shell_info;
 
 /**
@@ -68,6 +70,7 @@ void sig_handle(int s);
 
 /********** MEMORY *********/
 void freedom(shell_info shellf);
+void free_env(shell_info shellf);
 
 /********* ENVIRONMENT************/
 char *_getenv(char *name);
@@ -75,6 +78,8 @@ char *_getenv(char *name);
 /********** BUILT-INS*************/
 int check_builtins(shell_info shellf);
 int exit_func(shell_info __attribute__((unused)) shellf);
+int executeEnvCommand(shell_info __attribute((unused)) shellf);
+int _setenv(shell_info __attribute__((unused)) shellf);
 
 /*********** PATH ***********/
 char **getpath(char *path);
@@ -84,7 +89,12 @@ void free_mem(char **pathlist);
 /********* UTILS ************/
 char *_itoa(int n);
 void reverse(char *str, int len);
+int _isalpha(int c);
 int _atoi(char *str);
+
+/********* VARIABLE HANDLING ***********/
+void variable(shell_info shellf);
+char *rmvar(char *str);
 
 /********* ERROR **********/
 void print_err(shell_info shellf);
