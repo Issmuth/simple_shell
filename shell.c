@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * main - initializes shell info
+ * main - initializes shell information
  * and starts loop
  *
  * Return: exit stat
