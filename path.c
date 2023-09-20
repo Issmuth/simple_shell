@@ -30,7 +30,7 @@ void free_mem(char **pathlist)
 char **getpath(char *path)
 {
 	int i = 0, j = 0;
-	char *token, **pathlist, *delim = ":"; 
+	char *token, **pathlist, *delim = ":";
 
 	if (path == NULL)
 		return (NULL);
@@ -77,7 +77,7 @@ int check_path(shell_info shellf)
 	char **pathlist;
 	int i = 0;
 	struct stat fstat;
-	
+
 	if (shellf.args == NULL || shellf.args[0] == NULL)
 		return (-1);
 
@@ -87,14 +87,15 @@ int check_path(shell_info shellf)
 	path = _getenv("PATH");
 	if (path == NULL)
 		return (0);
-	
+
 	pathlist = getpath(path);
 	if (pathlist == NULL)
 		return (0);
 
 	while (pathlist[i])
 	{
-		temp_chain = malloc(sizeof(char) * (_strlen(pathlist[i]) + _strlen(shellf.args[0]) + 1));
+		temp_chain = malloc(sizeof(char) *
+				(_strlen(pathlist[i]) + _strlen(shellf.args[0]) + 1));
 		_strcpy(temp_chain, pathlist[i]);
 		_strcat(temp_chain, shellf.args[0]);
 		if (stat(temp_chain, &fstat) == 0)
@@ -108,7 +109,7 @@ int check_path(shell_info shellf)
 		free(temp_chain);
 		i++;
 	}
-	
+
 	free_mem(pathlist);
 	return (0);
 }

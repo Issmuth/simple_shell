@@ -3,7 +3,7 @@
 /**
  * count_env - counts the number of
  * environment when the program starts
- * 
+ *
  * Return: number of env
  */
 
@@ -11,7 +11,7 @@ int count_env(void)
 {
 	int i = 0;
 
-	while(environ[i])
+	while (environ[i])
 		i++;
 
 	return (i);
@@ -20,6 +20,8 @@ int count_env(void)
 /**
  * main - initializes shell info
  * and starts loop
+ * @argc: argument count
+ * @argv: list of arguments
  *
  * Return: exit stat
  */
@@ -40,7 +42,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 	shellf.init_env = count_env();
 	shellf.pid = getpid();
 	looper(shellf);
-	
+
 	return (0);
 }
-

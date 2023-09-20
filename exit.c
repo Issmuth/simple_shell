@@ -3,6 +3,8 @@
 /**
  * exit_func - exit function
  * @shellf: shellf info including exit status
+ *
+ * Return: error no if fail
  */
 
 int exit_func(shell_info __attribute__((unused)) shellf)
@@ -26,15 +28,14 @@ int exit_func(shell_info __attribute__((unused)) shellf)
 			write(STDERR_FILENO, "\n", 1);
 			free(loop);
 			return (2);
-		} else
-			if (stat >= 256)
-				shellf.stat = (stat % 256);
-			else
-				shellf.stat = stat;
+		}
+		if (stat >= 256)
+			shellf.stat = (stat % 256);
+		else
+			shellf.stat = stat;
 	}
 	free(loop);
 	freedom(shellf);
 	free_env(shellf);
 	exit(shellf.stat);
 }
-			

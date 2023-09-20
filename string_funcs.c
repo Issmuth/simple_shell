@@ -28,8 +28,8 @@ char *_strcat(char *dest, const char *src)
 
 /**
  * _strcmp - Compares two strings.
- * @s1: ...
- * @s2: ...
+ * @str1: ...
+ * @str2: ...
  *
  * Return: byte difference with
  * respect to str1.
@@ -51,7 +51,7 @@ int _strcmp(const char *str1, const char *str2)
 
 /**
  * _strlen - Returns the length of a string.
- * @s: A pointer to the characters string.
+ * @str: A pointer to the characters string.
  *
  * Return: The length of the character string.
  */
@@ -62,7 +62,7 @@ int _strlen(const char *str)
 	if (!str)
 		return (len);
 
-	while(str[len])
+	while (str[len])
 		len++;
 
 	return (len);
@@ -80,7 +80,7 @@ int _strlen(const char *str)
 char *_strcpy(char *dest, const char *src)
 {
 	size_t i;
-	
+
 	if (!dest || !src)
 		return (NULL);
 
@@ -107,7 +107,7 @@ char *_strdup(const char *str)
 	if (!str)
 		return (NULL);
 
-	for (len = 0; str[len] != '\0';len++)
+	for (len = 0; str[len] != '\0'; len++)
 		;
 
 	new = malloc(sizeof(char) * (len + 1));
@@ -116,7 +116,7 @@ char *_strdup(const char *str)
 
 	for (i = 0; i < len; i++)
 		new[i] = str[i];
-	
+
 	new[len] = str[len];
 	return (new);
 }

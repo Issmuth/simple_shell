@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * chech_builtins - execute a builtin command
+ * check_builtins - execute a builtin command
  * if it exists
  * @shellf: shell info
  *
@@ -15,11 +15,12 @@ int check_builtins(shell_info shellf)
 		{"exit", exit_func},
 		{"env", executeEnvCommand},
 		{"setenv", sh_setenv},
+		{"unsetenv", sh_unsetenv},
 		{"cd", cd},
 		{NULL, NULL}
 	};
 
-	if (shellf.args == NULL || shellf.args[0] == NULL )
+	if (shellf.args == NULL || shellf.args[0] == NULL)
 		return (0);
 
 	for (i = 0; built_ins[i].command != NULL; i++)

@@ -54,7 +54,7 @@ char *_itoa(int n)
 		is_negative++;
 		n *= -1;
 	}
-	
+
 	temp = n;
 	if (n != 0)
 	{

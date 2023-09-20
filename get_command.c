@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * get_command - gets command from user
+ * get_command - gets a command from user
  * @sig: pointer to an integer to signify EOF
  *
  * Return: command

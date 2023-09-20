@@ -22,7 +22,8 @@ extern char **environ;
  * the loops has iterated
  * @stat: shell status
  * @mode: interactive vs non-interactive
- * @env: environmenr variables list
+ * @init_env: environmenr variables list
+ * @pid: current process id
  */
 typedef struct info
 {
@@ -45,7 +46,7 @@ typedef struct builtin
 {
 	char *command;
 	int (*func)(shell_info __attribute__((unused)) shellf);
-}builtin;
+} builtin;
 
 /************* STRING TOOLS ************/
 int _strlen(const char *str);
@@ -83,6 +84,7 @@ int check_builtins(shell_info shellf);
 int exit_func(shell_info __attribute__((unused)) shellf);
 int executeEnvCommand(shell_info __attribute((unused)) shellf);
 int sh_setenv(shell_info __attribute__((unused)) shellf);
+int sh_unsetenv(shell_info __attribute__((unused)) shellf);
 int cd(shell_info __attribute__((unused)) shellf);
 char *get_cwd(void);
 

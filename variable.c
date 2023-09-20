@@ -40,7 +40,7 @@ void variable(shell_info shellf)
 {
 	int i = 0;
 	char *str;
-	
+
 	if (!(shellf.args))
 		return;
 
