@@ -26,10 +26,7 @@ void freedom(shell_info shellf)
 
 void free_env(shell_info shellf)
 {
-	int i = 0;
-
-	while ((shellf.env)[i])
-		i++;
+	int i = shellf.init_env;
 
 	if (environ[i] == NULL)
 		return;

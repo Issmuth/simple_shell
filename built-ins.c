@@ -14,7 +14,8 @@ int check_builtins(shell_info shellf)
 	builtin built_ins[] = {
 		{"exit", exit_func},
 		{"env", executeEnvCommand},
-		{"setenv", _setenv},
+		{"setenv", sh_setenv},
+		{"cd", cd},
 		{NULL, NULL}
 	};
 

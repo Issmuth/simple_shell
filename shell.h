@@ -32,7 +32,8 @@ typedef struct info
 	int loop_count;
 	int stat;
 	int mode;
-	char **env;
+	int init_env;
+	pid_t pid;
 } shell_info;
 
 /**
@@ -73,13 +74,17 @@ void freedom(shell_info shellf);
 void free_env(shell_info shellf);
 
 /********* ENVIRONMENT************/
+int count_env(void);
 char *_getenv(char *name);
+int _setenv(char *name, char *value);
 
 /********** BUILT-INS*************/
 int check_builtins(shell_info shellf);
 int exit_func(shell_info __attribute__((unused)) shellf);
 int executeEnvCommand(shell_info __attribute((unused)) shellf);
-int _setenv(shell_info __attribute__((unused)) shellf);
+int sh_setenv(shell_info __attribute__((unused)) shellf);
+int cd(shell_info __attribute__((unused)) shellf);
+char *get_cwd(void);
 
 /*********** PATH ***********/
 char **getpath(char *path);
